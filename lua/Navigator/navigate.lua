@@ -19,6 +19,12 @@ local function load_mux()
     if ok_tmux then
         return tmux
     end
+    local ok_rex, rex = pcall(function()
+        return require('Navigator.mux.rex'):new()
+    end)
+    if ok_rex then
+        return rex
+    end
     local ok_wezterm, wezterm = pcall(function()
         return require('Navigator.mux.wezterm'):new()
     end)
